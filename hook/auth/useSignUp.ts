@@ -10,15 +10,22 @@ function useSignUp() {
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const {mutate: signUpHandler} = useSignUpHandler(onSuccessLogin)
+    const {mutate: signUpHandler ,error} = useSignUpHandler(onSuccessSingUp,onErrorSignUp)
     const onSubmit = (data: any) => {
         signUpHandler(data)
         setEmail(data.email)
     };
     const router = useRouter();
-    function onSuccessLogin(){
+    function onSuccessSingUp(){
         router.push(`/confirm-signup?email=${encodeURIComponent(email)}`);
-
+    }
+    function onErrorSignUp(error:any){
+        const errorMsg = error.response.data.detail[0].msg
+        if(!errorMsg){
+            console.log(error.response.data.detail)
+        }else{
+            console.log(errorMsg)
+        }
     }
     return {errors, register, handleSubmit, onSubmit }
 }

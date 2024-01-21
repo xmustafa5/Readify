@@ -1,5 +1,6 @@
 import { eyeShowPassword, eyeVisiblePassword } from "@/assets/svg/login";
 import { useEffect, useState } from "react";
+import { useMemo } from 'react';
 import req1 from "../../assets/frames/required/required0001.png";
 import req2 from "../../assets/frames/required/required0002.png";
 import req3 from "../../assets/frames/required/required0003.png";
@@ -24,7 +25,7 @@ import req21 from "../../assets/frames/required/required0021.png";
 import req22 from "../../assets/frames/required/required0022.png";
 import req23 from "../../assets/frames/required/required0023.png";
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 interface IsProps {
   inputType?: string;
   placeholder?: string;
@@ -48,13 +49,13 @@ const Input = ({
   errors,
 }: IsProps) => {
   const [statusPassword, setStatusPassword] = useState<string>("");
-  const [frameImage, setFrameImage] = useState<any>(req1);
-  const [allImagesDisplayed, setAllImagesDisplayed] = useState(false);
-  const [loadingImages, setLoadingImages] = useState([
+  const [frameImage, setFrameImage] = useState<StaticImageData>(req1);
+
+  const loadingImages = useMemo(() => [
     req1, req2, req3, req4, req5, req6, req7, req8, req9, req10,
     req11, req12, req13, req14, req15, req16, req17, req18, req19, req20,
     req21, req22, req23
-  ]);
+  ], []); 
   function showPasswordHandler() {
     setStatusPassword((prevStatus) =>
       prevStatus === "password" ? "text" : "password"
@@ -64,33 +65,22 @@ const Input = ({
     setStatusPassword(e.target.value ? "password" : "");
   }
  
-  
- 
-
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
-
     if (errors) {
-      const images = [req1,req2,req3,req4,req5,req6,req7,req8,req9,req10,
-        req11,req12,req13,req14,req15,req16,req17,req18,req19,req20,req21,req22,req23];
+      const images =loadingImages
       let currentIndex = 0;
-
       const updateImage = () => {
         setFrameImage(images[currentIndex]);
         currentIndex = (currentIndex + 1) % images.length;
-        console.log(images[currentIndex]);
-        
-        if (currentIndex === 0) {
-          setAllImagesDisplayed(true);
-        } else {
+        if (currentIndex !== 0) {
           timeoutId = setTimeout(updateImage,50);
         }
       };
       updateImage();
     }
-
     return () => clearTimeout(timeoutId);
-  }, [errors]);
+  }, [errors,loadingImages]);
   return (
     <div className="relative">
       {showPassword ? (
@@ -100,7 +90,7 @@ const Input = ({
             placeholder={placeholder || ""}
             className={`w-[350px] h-14 rounded-md shadow-md text-xl pl-2 border-2 ${
               errors
-                ? "border-red-500 focus:border-red-500"
+                ? "border-red-400 focus:border-red-400"
                 : "border-[#E0C99A] focus:border-[#a9966f]"
             } placeholder:uppercase  focus:outline-none`}
             {...register(`${name}`, {
@@ -123,16 +113,16 @@ const Input = ({
       ) : (
         <div className="relative  ">
           <Image
-            src={frameImage}
-            alt="any"
-            className=" absolute  h-auto -left-[128px] -bottom-4 w-[150px] z-10  "
+            src={errors ? frameImage:req1}
+            alt="Required"
+            className="absolute h-auto -left-[128px] -bottom-4 w-[150px] z-10 "
           />
           <input
             type={inputType || `text`}
             placeholder={placeholder || ""}
             className={`w-[350px] h-14 rounded-md shadow-md relative z-50 text-xl pl-2 border-2 ${
               errors
-                ? "border-red-500 focus:border-red-500"
+                ? "border-red-400 focus:border-red-400"
                 : "border-[#E0C99A] focus:border-[#a9966f]"
             } placeholder:uppercase  focus:outline-none`}
             {...register(`${name}`, {
