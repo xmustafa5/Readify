@@ -1,9 +1,5 @@
-import axios from "axios";
-import { useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
-import useSignUp from "@/hook/auth/useSignUp";
-import { useSearchParams } from "next/navigation";
 import useConfirmSignUp from "@/hook/auth/useConfirmSignUp";
+
 const confirmSignUp = () => {
 const {handleSubmit,onSubmit,register} = useConfirmSignUp()
 

@@ -1,9 +1,8 @@
-
 import useLogIn from "@/hook/auth/useLogIn";
+
 const logIn = () => {
-const {handleSubmit,register,onSubmit,errors,tokens} = useLogIn()
-  console.log(tokens);
-  
+  const { handleSubmit, register, onSubmit, errors } = useLogIn();
+
   return (
     <div className="bg-yellow-200 flex flex-col gap-6 justify-center items-center w-full h-screen">
       <form onSubmit={handleSubmit(onSubmit)}>

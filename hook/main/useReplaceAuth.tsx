@@ -11,6 +11,8 @@ const useReplaceAuth = () => {
       }else{
         router.replace('/'); 
       }
+      console.log('test');
+      
     }, []);
 };
 export default useReplaceAuth

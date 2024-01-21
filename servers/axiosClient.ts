@@ -1,10 +1,11 @@
-
-
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
-axios.interceptors.request.use(
+const axiosClient = axios.create();
+
+axiosClient.interceptors.request.use(
  (config) => {
-   const token = localStorage.getItem('token');
+   const token = Cookies.get('token');
    if (token) {
      config.headers.Authorization = `Bearer ${token}`;
    }
@@ -15,4 +16,4 @@ axios.interceptors.request.use(
  }
 );
 
-export default axios;
+export default axiosClient;

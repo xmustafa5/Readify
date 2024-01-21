@@ -1,9 +1,7 @@
-import axios from "axios";
-import { useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
 import useSignUp from "@/hook/auth/useSignUp";
+
 const singUp = () => {
-const {handleSubmit,onSubmit,register} = useSignUp()
+  const { handleSubmit, onSubmit, register } = useSignUp();
   return (
     <div className="bg-yellow-200 flex flex-col gap-6 justify-center items-center w-full h-screen">
       <form onSubmit={handleSubmit(onSubmit)}>
