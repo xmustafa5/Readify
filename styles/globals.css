@@ -17,3 +17,18 @@
 }
 
 
+.backgroundCover{
+  background-image: url(../assets/white-concrete-wall.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
+}
+.backgroundLeft{
+  background-image: url(../assets/left.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  background-blend-mode: multiply;
+}

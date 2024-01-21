@@ -19,17 +19,15 @@ function useLogIn(){
   const router = useRouter();
   const tokens = Cookies.get('token');
 
-  useEffect(() => {
-    const token = Cookies.get('token');
-    if (token) {
-      router.replace('/')
-    }    
-  }, []);
+  // useEffect(() => {
+  //   const token = Cookies.get('token');
+  //   if (token) {
+  //     router.replace('/')
+  //   }    
+  // }, []);
   
 function onSuccessLogin(){
   router.replace('/')
-  console.log("success");
-  
 } 
   const onSubmit = (data: any) => {
     loginHandler(data)

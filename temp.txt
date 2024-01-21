@@ -1,15 +1,53 @@
 
- //check if login or not 
-import { NextRequest, NextResponse } from 'next/server';
-
-export function middleware(req: NextRequest) {
-  const authorizationHeader = req.headers.get('Authorization');
-  if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
-    return NextResponse.redirect('/login');
-  }
-  return NextResponse.next();
-}
 
 
+this make infinte video work 
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    const images = [image2, image3, image4, image5];
+    let currentIndex = 0;
+
+    const updateImage = () => {
+      setFrameImage(images[currentIndex]);
+      currentIndex = (currentIndex + 1) % images.length;
+      timeoutId = setTimeout(updateImage, 1000); // Change image every 1 second
+    };
+
+    updateImage();
+
+    // Clear the timeout when the component unmounts or when a new error occurs
+    return () => clearTimeout(timeoutId);
+  }, [errors]);
 
 
+
+
+  this is peice of art 
+  
+
+   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    if (errors) {
+      const images = [image2, image3, image4, image5];
+      let currentIndex = 0;
+
+      const updateImage = () => {
+        setFrameImage(images[currentIndex]);
+        currentIndex = (currentIndex + 1) % images.length;
+
+        if (currentIndex === 0) {
+          // All images have been displayed, stop updating
+          setAllImagesDisplayed(true);
+        } else {
+          timeoutId = setTimeout(updateImage, 1000); // Change image every 1 second
+        }
+      };
+
+      updateImage();
+    }
+
+    // Clear the timeout when the component unmounts or when a new error occurs
+    return () => clearTimeout(timeoutId);
+  }, [errors, allImagesDisplayed]);

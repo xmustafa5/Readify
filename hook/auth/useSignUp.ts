@@ -14,8 +14,6 @@ function useSignUp() {
     const onSubmit = (data: any) => {
         signUpHandler(data)
         setEmail(data.email)
-        console.log("onsubmit");
-        
     };
     const router = useRouter();
     function onSuccessLogin(){

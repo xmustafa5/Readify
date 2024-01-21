@@ -7,6 +7,5 @@ export default function about() {
     queryKey: ["get-all-data"],
     queryFn: getAllData,
   });
-  console.log({data});
   return <div>about</div>;
 }
