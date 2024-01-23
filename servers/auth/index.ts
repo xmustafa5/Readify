@@ -16,12 +16,12 @@ export async function loginHandler(data: any) {
     return response.data;
 }
 
-export async function confirmHandler({data,emailFromUrl}:any) {
+export async function confirmHandler({ data, emailFromUrl }: any) {
     const response = await axios.post(
         "https://sagrw1.pythonanywhere.com/api/auth/verification_email",
-        { 
+        {
             email: emailFromUrl,
-            code:data.code
+            code: data.code
         }
     );
     return response.data;

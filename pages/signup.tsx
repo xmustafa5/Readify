@@ -67,7 +67,6 @@ const singUp = () => {
                 required
                 register={register}
                 errors={errors.email}
-
               />
               <Input
                 inputType="password"
@@ -77,7 +76,6 @@ const singUp = () => {
                 required
                 showPassword
                 errors={errors.password1}
-
               />
               <Input
                 inputType="password"
@@ -87,7 +85,6 @@ const singUp = () => {
                 required
                 showPassword
                 errors={errors.password2}
-
               />
               <button className="bg-[#F5DEAF] shadow-xl  w-full h-16 rounded-md flex items-center justify-center hover:bg-[#c9ad7a] uppercase font-medium text-xl p-2 whitespace-nowrap">
                 sing Up

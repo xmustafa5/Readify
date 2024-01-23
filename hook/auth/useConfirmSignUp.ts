@@ -1,9 +1,8 @@
 import { useForm } from "react-hook-form";
-import useSignUpHandler from "./query/useSignUpHandler";
 import { useRouter } from "next/router";
 import useConfirmHandler from "./query/useConfirmHandler";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import  Cookies  from 'js-cookie';
 
 function useConfirmSignUp() {
     const { get } = useSearchParams();
@@ -19,17 +18,12 @@ function useConfirmSignUp() {
         signUpHandler({ data, emailFromUrl })
     };
     const token = data?.token?.access
-        if (token) {    
-            localStorage.setItem('token', token);
-         }
+    if (token) {
+        Cookies.set('token', token);
+    }
 
     const router = useRouter();
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-          router.replace('/'); 
-        }
-      }, []);
+
     function onSuccessConfirm() {
         console.log("confirm done");
     }
